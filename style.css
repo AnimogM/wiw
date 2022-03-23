@@ -6,8 +6,8 @@
 	--DARKESTBlue--: hsl(200, 15%, 8%);
 	--DARKGRAY--: hsl(0, 0%, 52%);
 	--LIGHTGRAY--: hsl(0, 0%, 98%);
-    --PRIMARYFONT--: 14px;
-    --SECONDARYFONT--: 16px;
+	--PRIMARYFONT--: 14px;
+	--SECONDARYFONT--: 16px;
 	--White--: hsl(0, 0%, 100%);
 }
 
@@ -15,8 +15,120 @@
 *::before,
 *::after {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Nunito Sans", sans-serif;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Nunito Sans", sans-serif;
 }
 
+a{
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+	background-color: var(--LIGHTGRAY--);
+	
+}
+
+.toggle-mode{
+	background: var(--DARKERBLUE--);
+	color: var(--White--);
+}
+
+.toggle-box {
+	background: var(--DARKBLUE--);
+	color: var(--White--);
+}
+
+.toggle-boxlight{
+	background: var(--white--);
+	color:black;
+}
+
+.fw-600 {
+	font-weight: 600;
+}
+
+.fw-700 {
+	font-weight: 700;
+}
+
+.fs-14 {
+	font-size: var(--PRIMARYFONT--);
+}
+
+.fs-16 {
+	font-size: var(--SECONDARYFONT--);
+}
+
+.h-30 {
+	height: 150px;
+}
+
+.h-300{
+	height: 300px;
+	width: 300px;
+}
+
+.w-300 {
+	width: 240px;
+}
+
+::placeholder {
+	font-size: 15px;
+}
+
+.py-2-5 {
+	padding-block: 12px;
+}
+
+.py-1-6{
+	padding-block: 6px;
+}
+
+.search-box {
+	background-image: url(./assets/search.svg);
+	background-repeat: no-repeat;
+	background-position: 6%;
+	padding-left: 4rem;
+}
+
+
+.w-full {
+	width: 89%;
+}
+
+.filter:hover {
+	cursor: pointer;
+}
+
+.region:hover {
+	cursor: pointer;
+	color: brown;
+}
+
+.region-box {
+	z-index: 2;
+}
+
+.dropdown {
+	display: none;
+}
+
+.fs-xs-10 {
+	font-size: 17px;
+}
+
+.object-fit{
+    object-fit: cover;
+}
+
+@media screen and (max-width: 400px) {
+	.fs-xs-10 {
+		font-size: 14px;
+	}
+}
