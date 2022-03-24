@@ -7,7 +7,7 @@ const regionBox = document.querySelector(".region-box");
 const mode = document.querySelector(".mode");
 const body = document.querySelector("body");
 let searchValue;
-export default let list = [];
+let list = [];
 
 const url = "https://restcountries.com/v3.1";
 
@@ -93,4 +93,6 @@ region.forEach((item) => {
 		console.log("filtered");
 	});
 });
+
+
 
