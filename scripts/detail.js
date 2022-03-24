@@ -1,3 +1,4 @@
+import {list} from './app.js';
 const url = "https://restcountries.com/v3.1";
 const detail = document.getElementById("detail");
 let title = document.querySelector("title");
@@ -49,12 +50,14 @@ const fetchDetail = async () => {
 					} = country;
 
 					const border = `<div class="d-flex align-items-md-center gap-2">
-										${borders.map((item) => {
+										${borders.forEach((item) => {
+                                                                   list.forEach((count, index) =>{
+                                                                     if(count.alpha3Code == item){
 											
 											return `
-												<a href="detail.html?name=${item}" class="border-0 py-1-6 px-4 fs-14 shadow-sm rounded">${"f"}</a>
-											`;
-										}).join("")}				
+												<a href="detail.html?name=${item}" class="border-0 py-1-6 px-4 fs-14 shadow-sm rounded">${count.name.common}</a>
+											`;}})
+										})}				
 								</div>`;
 
 					return `
