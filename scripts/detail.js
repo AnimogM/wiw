@@ -1,4 +1,4 @@
-import {list} from './app.js';
+
 const url = "https://restcountries.com/v3.1";
 const detail = document.getElementById("detail");
 let title = document.querySelector("title");
