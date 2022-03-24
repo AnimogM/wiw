@@ -7,6 +7,7 @@ const regionBox = document.querySelector(".region-box");
 const mode = document.querySelector(".mode");
 const body = document.querySelector("body");
 let searchValue;
+let list = [];
 
 const url = "https://restcountries.com/v3.1";
 
@@ -21,6 +22,7 @@ const fetchCountries = async (urlPath) => {
 		</div>
 		`;
 		const data = await res.json();
+list = data;
 		if (res.status === 200) {
 			countries.innerHTML = data
 				.map((country) => {
@@ -92,3 +94,4 @@ region.forEach((item) => {
 	});
 });
 
+export default list;
