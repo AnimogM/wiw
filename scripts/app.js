@@ -94,4 +94,4 @@ region.forEach((item) => {
 	});
 });
 
-export default list;
+export {list};
