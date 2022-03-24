@@ -14,39 +14,37 @@
 *,
 *::before,
 *::after {
-    margin: 0;
+	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: "Nunito Sans", sans-serif;
 }
 
-a{
-    text-decoration: none;
-    color: black;
+a {
+	text-decoration: none;
+	color: black;
 }
 
 ul {
-    list-style-type: none;
+	list-style-type: none;
 }
 
 body {
 	background-color: var(--LIGHTGRAY--);
-	
 }
 
-.toggle-mode{
+.dark-mode{
 	background: var(--DARKERBLUE--);
 	color: var(--White--);
 }
 
-.toggle-box {
-	background: var(--DARKBLUE--);
-	color: var(--White--);
-}
-
-.toggle-boxlight{
-	background: var(--white--);
-	color:black;
+.dark-mode a,
+.dark-mode button,
+.dark-mode header,
+.dark-mode input,
+.dark-mode .boxer, .dark-mode ::placeholder {
+	background: var(--DARKBLUE--) !important;
+	color: var(--White--) !important;
 }
 
 .fw-600 {
@@ -69,7 +67,7 @@ body {
 	height: 150px;
 }
 
-.h-300{
+.h-300 {
 	height: 300px;
 	width: 300px;
 }
@@ -84,19 +82,22 @@ body {
 
 .py-2-5 {
 	padding-block: 12px;
+	padding-left: 60px;
 }
 
-.py-1-6{
+.py-1-6 {
 	padding-block: 6px;
 }
 
 .search-box {
-	background-image: url(./assets/search.svg);
+	/* background-image: url(./assets/search.svg);
 	background-repeat: no-repeat;
 	background-position: 6%;
-	padding-left: 4rem;
+	padding-left: 4rem; */
+	position: absolute;
+	top: 17px;
+	left: 30px;
 }
-
 
 .w-full {
 	width: 89%;
@@ -123,12 +124,27 @@ body {
 	font-size: 17px;
 }
 
-.object-fit{
-    object-fit: cover;
+.object-fit {
+	object-fit: cover;
+}
+
+.d-img {
+	height: 300px;
+	object-fit: cover;
+}
+
+.toggler{
+	cursor: pointer;
 }
 
 @media screen and (max-width: 400px) {
+	.d-img{
+		height: 200px;
+	}
 	.fs-xs-10 {
 		font-size: 14px;
+	}
+	.space {
+		gap: 30px;
 	}
 }

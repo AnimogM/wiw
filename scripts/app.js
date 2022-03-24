@@ -21,7 +21,6 @@ const fetchCountries = async (urlPath) => {
 		</div>
 		`;
 		const data = await res.json();
-		console.log(data);
 		if (res.status === 200) {
 			countries.innerHTML = data
 				.map((country) => {
@@ -36,7 +35,7 @@ const fetchCountries = async (urlPath) => {
 						<a href="detail.html?name=${common}">
 							<div class="w-300 shadow-sm rounded">
 									<img src=${png} class='w-100 h-30 rounded-top object-fit'>
-									<div class='bg-white py-4 px-4'>
+									<div class='bg-white boxer py-4 rounded-bottom px-4'>
 										<h1 class='fs-16 fw-bold pb-2'>${common}</h1>
 										<p class='fs-14 mb-0 fw-600'>Population: <span class='fw-normal'>${population
 											.toString()
@@ -46,7 +45,7 @@ const fetchCountries = async (urlPath) => {
 											)}</span></p>
 										<p class='fs-14 mb-0 fw-600 lh-0'>Region: <span class='fw-normal'>${region}</span></p>
 										<p class='fs-14 fw-600'>Capital: <span class='fw-normal'>${
-											capital? capital : "None"
+											capital ? capital : "None"
 										}</span></p>
 									</div>
 							</div>
@@ -65,25 +64,17 @@ const fetchCountries = async (urlPath) => {
 // initial fetch
 window.onload = () => {
 	fetchCountries(`${url}/all`);
-	console.log("loaded");
 };
 
 // SEARCH FOR COUNTRY
 
 searchBox.addEventListener("keypress", (e) => {
 	searchValue = e.target.value;
-	if (searchValue === "") {
-		console.log("empty");
-	} else {
+	if (searchValue !== "") {
 		if (e.keyCode === 13) {
 			fetchCountries(`${url}/name/${searchValue}`);
-			console.log("searched");
 		}
 	}
-	// if (searchValue === '') {
-	// 	fetchCountries(`${url}/all`);
-	// 	console.log("refreshed");
-	// }
 });
 
 // dropdown for region
@@ -101,9 +92,3 @@ region.forEach((item) => {
 	});
 });
 
-// toggle mode
-mode.addEventListener("click", () => {
-	body.classList.toggle("toggle-mode")
-	body.children.classList.toggle("toggle-boxlight");
-	console.log("clicked");
-})

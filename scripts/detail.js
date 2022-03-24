@@ -7,26 +7,36 @@ const queryString = window.location.search;
 const nameParam = new URLSearchParams(queryString);
 const name = nameParam.get("name");
 
+title.innerText = name;
+
+const getBorder = async (code) => {
+	let n;
+	try {
+		const res = await fetch(`${url}/alpha/${code}`);
+		const data = await res.json();
+		n = data[0].name.common;
+	} catch (error) {
+		console.log(error);
+	}
+	console.log("n is", n);
+	return n;
+};
 
 const destructure = (object) => {
-	if(object){
+	if (object) {
+		let arr = [];
 		for (let key in object) {
-			// if (object.hasOwnProperty(key)) {
-				console.log(object);
-				return object[key]
-			// } else {
-			// 	return "none";
-			// }
-		}     
+			arr.push(object[key]);
+		}
+		return arr;
 	} else {
-		return "none"
+		return "none";
 	}
-}
+};
 
 const fetchCountry = async () => {
-	title = name;
 	try {
-		const res = await fetch(`${url}/name/${name}`);
+		const res = await fetch(`${url}/name/${name}?fullText=true`);
 		detail.innerHTML = `
 		<div class="d-flex justify-content-center pt-5">
 			<div class="spinner-border" role="status">
@@ -48,17 +58,32 @@ const fetchCountry = async () => {
 						population,
 						currencies,
 						languages,
-						tld
+						tld,
+						borders,
+						altSpellings,
 					} = country;
 
+					const border = `<div class="d-flex align-items-md-center gap-2">
+										${borders.forEach((item) => {
+											
+											return `
+												<a href="detail.html?name=${item}" class="border-0 py-1-6 px-4 fs-14 shadow-sm rounded">${item}
+											`;
+										})}				
+								</div>`;
+
 					return `
-                    <div class='row align-items-center gy-5'>
-                        <div class="col-lg-6 col-md-5"><img class="w-100" src='${png}' alt='${common}'></div>
-                        <div class="col-lg-6 col-md-7">
+                    <div class='row align-items-center justify-content-between gy-4'>
+                        <div class="col-lg-5 col-md-6"><img class="w-100 d-img" src='${png}' alt='${common}'></div>
+                        <div class="col-lg-6 col-md-6">
 							<h1 class='fs-3 fw-bold pb-3'>${common}</h1>
-							<div class="row gy-5 justify-content-between">
-								<div class="col-md-6 fs-14 fw-700">
-									<p class='mb-1'>Native Name: <span class='fw-normal'>${region}</span></p>
+							<div class="d-flex flex-column flex-md-row gap-4 gap-md-0 justify-content-between">
+								<div class="fs-14 fw-700">
+									<p class='mb-1'>Native Name: <span class='fw-normal'>${
+										altSpellings[1]
+											? altSpellings[1]
+											: common
+									}</span></p>
 									<p class='mb-1'>Population: <span class='fw-normal'>${population
 										.toString()
 										.replace(
@@ -73,20 +98,25 @@ const fetchCountry = async () => {
 										capital ? capital : "None"
 									}</span></p>
 								</div>
-								<div class="col-md-6 fs-14 fw-700">
+								<div class="fs-14 fw-700">
 									<p class='mb-1'>Top Level Domain: <span class='fw-normal'>${tld}</span></p>
 									<p class='mb-1 text-capitalize'>Currencies: <span class='fw-normal'>${
-										destructure(currencies).name
+										destructure(currencies)[0].name
 									}</span></p>
-									<p class='mb-1'>Languages: <span class='fw-normal'>${destructure(
-										languages
+									<p class='mb-1'>Languages: <span class='fw-normal'>${destructure(languages).map(
+										(i) => " " + i
 									)}</span></p>
 								</div>
+							</div>
+							<div class="d-flex flex-md-row flex-column mt-4 fs-14 fw-700 align-items-md-center gap-md-3 gap-2">
+								<p class="mb-0">Border Countries: </p>
+								${borders ? border : "None"}
 							</div>
 						</div>
                     </div>
 					`;
-				}).join("")
+				})
+				.join("");
 		} else {
 			detail.innerHTML = `<p class='text-center pt-5 display-5'>${data.message}</p>`;
 		}
