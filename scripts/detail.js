@@ -7,21 +7,6 @@ const queryString = window.location.search;
 const nameParam = new URLSearchParams(queryString);
 const name = nameParam.get("name");
 
-title.innerText = name;
-
-const getBorder = async (code) => {
-let n;
-	try {
-		const res = await fetch(`${url}/alpha/${code}`);
-		const data = await res.json();
-		n = data[0].name.common;
-	} catch (error) {
-		console.log(error);
-	}
-	return n;
-};
-
-
 const destructure = (object) => {
 	if (object) {
 		let arr = [];
@@ -33,8 +18,8 @@ const destructure = (object) => {
 		return "none";
 	}
 };
-
-const fetchCountry = async () => {
+title.innerText = name;
+const fetchDetail = async () => {
 	try {
 		const res = await fetch(`${url}/name/${name}?fullText=true`);
 		detail.innerHTML = `
@@ -67,11 +52,7 @@ const fetchCountry = async () => {
 										${borders.map((item) => {
 											
 											return `
-												<a href="detail.html?name=${item}" class="border-0 py-1-6 px-4 fs-14 shadow-sm rounded">${
-  async renderExam(item) {
-        const exam = await getBorder(item);
-        return exam;
-}  }</a>
+												<a href="detail.html?name=${item}" class="border-0 py-1-6 px-4 fs-14 shadow-sm rounded">${"f"}</a>
 											`;
 										}).join("")}				
 								</div>`;
@@ -129,7 +110,7 @@ const fetchCountry = async () => {
 	}
 };
 
-fetchCountry();
+fetchDetail();
 
 // previous page
 back.addEventListener("click", () => {
