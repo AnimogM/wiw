@@ -9,19 +9,6 @@ const name = nameParam.get("name");
 
 title.innerText = name;
 
-const getBorder = async (code) => {
-let n;
-	try {
-		const res = await fetch(`${url}/alpha/${code}`);
-		const data = await res.json();
-		n = data[0].name.common;
-	} catch (error) {
-		console.log(error);
-	}
-	return n;
-};
-
-
 const destructure = (object) => {
 	if (object) {
 		let arr = [];
@@ -45,8 +32,9 @@ const fetchCountry = async () => {
 		</div>
 		`;
 		const data = await res.json();
-		console.log(data);
-		if (res.status === 200) {
+
+		if (res.status === 200 && Array.isArray(data)) {
+			console.log(data);
 			detail.innerHTML = data
 				.map((country) => {
 					const {
@@ -64,16 +52,18 @@ const fetchCountry = async () => {
 					} = country;
 
 					const border = `<div class="d-flex align-items-md-center gap-2">
-										${borders.map((item) => {
-											
-											return `
-												<a href="detail.html?name=${item}" class="border-0 py-1-6 px-4 fs-14 shadow-sm rounded">${
-  async renderExam(item) {
-        const exam = await getBorder(item);
-        return exam;
-}  }</a>
+										${
+											Array.isArray(borders)
+												? borders
+														.map((item) => {
+															return `
+												<a class="border-0 py-1-6 px-4 fs-14 shadow-sm rounded">${item}</a>
 											`;
-										}).join("")}				
+														})
+														.join(" ")
+												: ""
+										}
+													
 								</div>`;
 
 					return `

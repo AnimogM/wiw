@@ -4,8 +4,6 @@ const filter = document.querySelector(".filter");
 const filterText = document.querySelector(".filter-text");
 const region = document.querySelectorAll(".region");
 const regionBox = document.querySelector(".region-box");
-const mode = document.querySelector(".mode");
-const body = document.querySelector("body");
 let searchValue;
 
 const url = "https://restcountries.com/v3.1";
@@ -61,26 +59,30 @@ const fetchCountries = async (urlPath) => {
 	}
 };
 
+fetchCountries(`${url}/all`);
+
 // initial fetch
-window.onload = () => {
-	fetchCountries(`${url}/all`);
-};
+// window.onload = () => {
+// };
 
 // SEARCH FOR COUNTRY
-
-searchBox.addEventListener("keypress", (e) => {
-	searchValue = e.target.value;
-	if (searchValue !== "") {
-		if (e.keyCode === 13) {
-			fetchCountries(`${url}/name/${searchValue}`);
+if (searchBox) {
+	searchBox.addEventListener("keypress", (e) => {
+		searchValue = e.target.value;
+		if (searchValue !== "") {
+			if (e.keyCode === 13) {
+				fetchCountries(`${url}/name/${searchValue}`);
+			}
 		}
-	}
-});
+	});
+}
 
 // dropdown for region
-filter.addEventListener("click", () => {
-	regionBox.classList.toggle("dropdown");
-});
+if (filter) {
+	filter.addEventListener("click", () => {
+		regionBox.classList.toggle("dropdown");
+	});
+}
 
 // filter
 region.forEach((item) => {
@@ -91,4 +93,3 @@ region.forEach((item) => {
 		console.log("filtered");
 	});
 });
-
