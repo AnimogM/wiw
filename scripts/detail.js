@@ -1,3 +1,4 @@
+
 const url = "https://restcountries.com/v3.1";
 const detail = document.getElementById("detail");
 let title = document.querySelector("title");
@@ -6,8 +7,6 @@ const back = document.querySelector("#back");
 const queryString = window.location.search;
 const nameParam = new URLSearchParams(queryString);
 const name = nameParam.get("name");
-
-title.innerText = name;
 
 const destructure = (object) => {
 	if (object) {
@@ -20,8 +19,9 @@ const destructure = (object) => {
 		return "none";
 	}
 };
+title.innerText = name;
 
-const fetchCountry = async () => {
+const fetchDetail = async () => {
 	try {
 		const res = await fetch(`${url}/name/${name}?fullText=true`);
 		detail.innerHTML = `
@@ -119,7 +119,7 @@ const fetchCountry = async () => {
 	}
 };
 
-fetchCountry();
+fetchDetail();
 
 // previous page
 back.addEventListener("click", () => {

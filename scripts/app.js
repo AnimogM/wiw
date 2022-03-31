@@ -5,6 +5,7 @@ const filterText = document.querySelector(".filter-text");
 const region = document.querySelectorAll(".region");
 const regionBox = document.querySelector(".region-box");
 let searchValue;
+let list = [];
 
 const url = "https://restcountries.com/v3.1";
 
@@ -19,6 +20,7 @@ const fetchCountries = async (urlPath) => {
 		</div>
 		`;
 		const data = await res.json();
+list = data;
 		if (res.status === 200) {
 			countries.innerHTML = data
 				.map((country) => {
