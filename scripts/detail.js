@@ -34,7 +34,7 @@ const fetchDetail = async () => {
 		const data = await res.json();
 
 		if (res.status === 200 && Array.isArray(data)) {
-			console.log(data);
+		
 			detail.innerHTML = data
 				.map((country) => {
 					const {

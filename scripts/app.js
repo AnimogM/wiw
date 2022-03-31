@@ -1,4 +1,5 @@
-const countries = document.getElementById("countries-list");
+const countries = document.querySelector("#countries-list");
+console.log(countries);
 const searchBox = document.getElementById("search-box");
 const filter = document.querySelector(".filter");
 const filterText = document.querySelector(".filter-text");
@@ -61,11 +62,11 @@ list = data;
 	}
 };
 
-fetchCountries(`${url}/all`);
 
 // initial fetch
-// window.onload = () => {
-// };
+window.onload = () => {
+	fetchCountries(`${url}/all`);
+};
 
 // SEARCH FOR COUNTRY
 if (searchBox) {
